@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+from scooter import *
+from scooter.gcc import build_gcc
+
+here = dirof(__file__)
+
+@build_main(here)
+def _(b ):
+    b = b
+    sources = here//'*.cpp'
+    bin = b.mkobj((), '')
+    opts = ('-Wall', '-Werror', '-fdiagnostics-color=always', '-O3', '-g', '-ffast-math', '-std=c++11')
+    libs = ('-lopencv_imgproc', '-lopencv_video', '-lopencv_core', '-lopencv_imgcodecs', '-lboost_thread', '-lpthread', '-lboost_system', '-lboost_chrono')
+    build_gcc(b, sources, bin, opts, gcc='g++', libs=libs)
+    easyruntty(bin)
+
