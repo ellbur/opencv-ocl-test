@@ -13,9 +13,11 @@ int main() {
     cout << "OpenCL is not available..." << endl;
     //return;
   }
+  
+  cv::ocl::setUseOpenCL(true);
 
   cv::ocl::Context context;
-  if (!context.create(cv::ocl::Device::TYPE_GPU)) {
+  if (!context.create(cv::ocl::Device::TYPE_ALL)) {
     cout << "Failed creating the context..." << endl;
     //return;
   }
